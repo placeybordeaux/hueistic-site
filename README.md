@@ -77,16 +77,45 @@ Bump the effective date at the top of `PRIVACY.md` first; it is rendered straigh
 
 ### When the screenshots change
 
-`raw/` holds the full-resolution captures off the test phone (`./dev-debug.sh shot` in the app
-repo, or `tools/site-capture.py`). Replace a file in `raw/`, keep the name, and re-run the build.
-The names are load-bearing — `index.html` references `assets/shots/<name>.webp`.
+`raw/` holds the full-resolution captures off the test phone. Replace a file, keep the name, and
+re-run the build; the names are load-bearing, since `index.html` references
+`assets/shots/<name>.webp`.
+
+Capture them with `tools/site-capture.py` in the app repo, which handles the three things that
+make a device screenshot publishable:
+
+- **A clean status bar**, via SystemUI demo mode — a fixed 12:00, no notification icons, no
+  DND moon, no network-speed readout.
+- **A masked app list.** `--mask` disables the packages in `tools/screenshot-hide.txt` for the
+  length of the shoot and re-enables them after. That file is not a "safe apps" list — the
+  density of the drawer is the product — it is the ~30 apps that identify the person holding
+  the phone rather than the kind of person who might buy this: a daycare app, travel documents,
+  banks, six password managers and authenticators, a utility that names the province.
+- **All nine views.** Six are locked in the release build, so `--launch` drives the debug
+  build's fake unlock instead. The mode button's cycle starts wherever the drawer was left, so
+  the capture slugs are positional guesses — check them against each view before renaming.
 
 ## The sizzle reel
 
-`assets/video/sizzle.mp4` and `sizzle.webm` are a recorded run of the app on a real phone. They
-are optional: `reel.js` asks for the mp4 with a `HEAD` request before showing the **Video /
-Stills** switch, so while no recording exists the page simply shows the captioned stills and no
-dead button. Record one with `tools/site-capture.py --reel` in the app repo.
+`assets/video/sizzle.mp4` and `sizzle.webm` are a recorded run of the app on a real phone —
+home screen, the Honeycomb spiral, a search typed one letter at a time, and back out through
+Rainbow and Mosaic. They are optional: `reel.js` asks for the mp4 with a `HEAD` request before
+showing the **Video / Stills** switch, so with no recording the page shows the captioned stills
+and no dead button. Re-record with `tools/site-capture.py --reel --mask` in the app repo.
+
+Two things about how it is made, because neither is obvious:
+
+- **It is recorded with scrcpy, not `screenrecord`.** The test phone's OxygenOS refuses
+  `screenrecord` every way it can be asked — to `/sdcard`, to `/data/local/tmp`, to stdout, all
+  "Permission denied" while the same shell writes those paths happily. Grabbing stills and
+  assembling them runs at 0.54 fps, which is a slideshow. scrcpy captures through MediaCodec
+  from its own pushed server, which the vendor policy does not block.
+- **The search happens on Honeycomb on purpose.** `CanvasDrawerView.setQuery` filters *in
+  place* — every app holds its position while the non-matches fade and shrink — and that is the
+  whole reason the sequence is in the reel. The Rainbow grid rebuilds instead, which looks like
+  any other launcher. The capture script classifies the visible view from a screenshot and taps
+  the mode button until it is on Honeycomb before recording starts, because the first take
+  landed on Rainbow purely by chance.
 
 Two presentations rather than one because which of them actually sells the app is a real
 question — a recording shows the animation and the responsiveness, and a captioned still lets
