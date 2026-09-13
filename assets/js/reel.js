@@ -34,11 +34,22 @@
 
   // ---------------------------------------------------------------- stills
 
+  var FADE_MS = 420; // must match .reel-still's transition in site.css
+
   function show(next) {
+    var outgoing = stills[index];
     index = (next + stills.length) % stills.length;
     stills.forEach(function (img, i) {
       img.classList.toggle("on", i === index);
     });
+    // Hold the frame we are leaving underneath the one arriving, so the dissolve never shows
+    // the black behind them both. Dropped once the incoming image is fully opaque.
+    if (outgoing && outgoing !== stills[index]) {
+      outgoing.classList.add("prev");
+      window.setTimeout(function () {
+        outgoing.classList.remove("prev");
+      }, FADE_MS);
+    }
     var cur = stills[index];
     caption.innerHTML = "";
     var b = document.createElement("b");
