@@ -241,6 +241,11 @@ h3 { font-size: 19px; font-weight: 650; letter-spacing: -0.01em; }
 @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 580px) { .cards { grid-template-columns: 1fr; } }
 
+/* Two featured cards rather than three across, so the pair that carries the paid tier is shown
+   at a size worth looking at instead of competing in a grid of six thumbnails. */
+.cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; }
+@media (max-width: 580px) { .cards-2 { grid-template-columns: 1fr; } }
+
 .card {
   background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius);
   overflow: hidden; display: flex; flex-direction: column;
