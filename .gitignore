@@ -1,0 +1,5 @@
+# Local scratch only. raw/ IS committed — it is the source for assets/shots and the only copy
+# of the captures outside the app repo's debug-shots, which is not published.
+*.pyc
+__pycache__/
+.DS_Store
