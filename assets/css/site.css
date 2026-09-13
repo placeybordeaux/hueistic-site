@@ -194,9 +194,15 @@ h3 { font-size: 19px; font-weight: 650; letter-spacing: -0.01em; }
 }
 
 /* Stills mode: every frame stacked, one visible at a time. Opacity rather than display so the
-   crossfade has something to animate and the images are all decoded up front. */
+   crossfade has something to animate and the images are all decoded up front.
+
+   The outgoing frame is held at full opacity underneath the incoming one (`.prev`) rather than
+   faded out alongside it. Two images crossing at 50% each over a black backdrop dip visibly
+   dark at the midpoint — on a phone frame that reads as the screen blinking off. Holding the
+   old one until the new has arrived makes it a true dissolve. */
 .reel-still { opacity: 0; transition: opacity 420ms ease; }
-.reel-still.on { opacity: 1; }
+.reel-still.prev { opacity: 1; z-index: 1; transition: none; }
+.reel-still.on { opacity: 1; z-index: 2; }
 @media (prefers-reduced-motion: reduce) { .reel-still { transition: none; } }
 
 .reel-caption {
