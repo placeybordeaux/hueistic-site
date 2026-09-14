@@ -95,32 +95,39 @@ make a device screenshot publishable:
   build's fake unlock instead. The mode button's cycle starts wherever the drawer was left, so
   the capture slugs are positional guesses — check them against each view before renaming.
 
-## The sizzle reel
+## The clips
 
-`assets/video/sizzle.mp4` and `sizzle.webm` are a recorded run of the app on a real phone —
-home screen, the Honeycomb spiral, a search typed one letter at a time, and back out through
-Rainbow and Mosaic. They are optional: `reel.js` asks for the mp4 with a `HEAD` request before
-showing the **Video / Stills** switch, so with no recording the page shows the captioned stills
-and no dead button. Re-record with `tools/site-capture.py --reel --mask` in the app repo.
+Every view has a short recording of itself in `assets/video/<name>.{mp4,webm}` — home, rainbow,
+mosaic, honeycomb, huering, bubbles. Each is used twice: on that view's card, and as one item in
+the hero's playlist. Nothing is concatenated; `reel.js` plays the same files in order and
+advances on `ended`.
 
-Two things about how it is made, because neither is obvious:
+They are optional. Every card video carries its screenshot as a `poster`, and the hero HEADs the
+first clip before offering the **Video / Stills** switch, so with no recordings the page falls
+back to exactly what it was: captioned stills and no dead button. Cards fetch their clip only
+once they are near the viewport (`preload="none"` plus an IntersectionObserver) — five
+autoplaying videos above the fold would spend megabytes on motion nobody has scrolled to.
 
-- **It is recorded with scrcpy, not `screenrecord`.** The test phone's OxygenOS refuses
-  `screenrecord` every way it can be asked — to `/sdcard`, to `/data/local/tmp`, to stdout, all
-  "Permission denied" while the same shell writes those paths happily. Grabbing stills and
-  assembling them runs at 0.54 fps, which is a slideshow. scrcpy captures through MediaCodec
-  from its own pushed server, which the vendor policy does not block.
-- **The search happens on Honeycomb on purpose.** `CanvasDrawerView.setQuery` filters *in
-  place* — every app holds its position while the non-matches fade and shrink — and that is the
-  whole reason the sequence is in the reel. The Rainbow grid rebuilds instead, which looks like
-  any other launcher. The capture script classifies the visible view from a screenshot and taps
-  the mode button until it is on Honeycomb before recording starts, because the first take
-  landed on Rainbow purely by chance.
+Re-record with `tools/site-capture.py --reel --mask` in the app repo. Four things about how they
+are made, because none is obvious:
 
-Two presentations rather than one because which of them actually sells the app is a real
-question — a recording shows the animation and the responsiveness, and a captioned still lets
-someone read what they are looking at. The switch is for deciding, and it is cheap to delete the
-losing half later.
+- **Recorded with scrcpy, not `screenrecord`.** The test phone's OxygenOS refuses `screenrecord`
+  every way it can be asked — to `/sdcard`, to `/data/local/tmp`, to stdout, all "Permission
+  denied" while the same shell writes those paths happily. Grabbing stills and assembling them
+  runs at 0.54 fps, which is a slideshow. scrcpy captures through MediaCodec from its own pushed
+  server, which the vendor policy does not block.
+- **The gestures run as one shell script on the phone**, not as a sequence of `adb shell input`
+  calls. Every such call is a USB round trip of variable latency, so a walk stitched together
+  host-side records its own jitter and a fast app looks laggy.
+- **The lead-in is trimmed.** A view clip can only reach its view by starting at the home screen
+  and swiping up, so the raw recording opens on a wallpaper. On a card captioned "Rainbow" that
+  is just wrong — the poster shows the right thing and the video then replaces it with somebody's
+  wallpaper. Each clip declares how much to cut.
+- **Each view is parked deliberately.** The mode button cycles from wherever the drawer was last
+  left, so without this a clip records whatever the previous run ended on. The three free views
+  are recognised from a screenshot (they separate cleanly on brightness and saturation); Hue Ring
+  and Bubbles are set by writing `drawer_mode` straight into the debug build's prefs, because the
+  dark views — Hue Ring, Spectrum, Wallet — do not separate reliably by sight.
 
 ## Release state: the call to action
 

@@ -71,19 +71,16 @@
                not a fallback for a broken video — they are the second presentation of the same
                tour, and the switch under the frame chooses. reel.js hides whichever is off; with
                no JS the first still shows, captioned, and the page still makes its point. -->
-          <video id="reel-video" hidden muted loop playsinline preload="none"
-                 poster="assets/shots/home.webp" aria-label="A run through the Hue-istic drawer views">
-            <source src="assets/video/sizzle.webm" type="video/webm">
-            <source src="assets/video/sizzle.mp4" type="video/mp4">
-          </video>
+          <video id="reel-video" hidden muted playsinline preload="none"
+                 poster="assets/shots/home.webp" aria-label="A run through the Hue-istic drawer views"></video>
 
           <div id="reel-stills">
-            <img class="reel-still on" src="assets/shots/home.webp" srcset="assets/shots/home.webp 620w, assets/shots/home@2x.webp 1240w" sizes="340px" alt="The Hue-istic home screen: a wallpaper, one app icon, a dock and a search widget." data-cap="A home screen first" data-sub="Pages, folders, a dock, widgets. Swipe up for the drawer.">
-            <img class="reel-still" src="assets/shots/rainbow.webp" srcset="assets/shots/rainbow.webp 620w, assets/shots/rainbow@2x.webp 1240w" sizes="340px" alt="The Rainbow view: apps in a grid under a RED section header, the background shading from red to orange." data-cap="Rainbow" data-sub="Every app in one list, red through violet." loading="lazy" decoding="async">
-            <img class="reel-still" src="assets/shots/mosaic.webp" srcset="assets/shots/mosaic.webp 620w, assets/shots/mosaic@2x.webp 1240w" sizes="340px" alt="The Mosaic view: twelve colored tiles — red, orange, yellow, green, teal, blue, purple, pink, rainbow, white, gray, black — each packed with that color's app icons." data-cap="Mosaic" data-sub="One tile per color. Tap a tile for its apps." loading="lazy" decoding="async">
-            <img class="reel-still" src="assets/shots/honeycomb.webp" srcset="assets/shots/honeycomb.webp 620w, assets/shots/honeycomb@2x.webp 1240w" sizes="340px" alt="The Honeycomb view: a dense hex spiral of app icons on colored cells." data-cap="Honeycomb" data-sub="A hex spiral, the apps you use most at its center." loading="lazy" decoding="async">
-            <img class="reel-still" src="assets/shots/huering.webp" srcset="assets/shots/huering.webp 620w, assets/shots/huering@2x.webp 1240w" sizes="340px" alt="The Hue Ring view: a segmented color wheel labelled Blue, 47 apps, with those apps listed beneath it." data-cap="Hue Ring" data-sub="A color wheel — tap a slice to see its apps." loading="lazy" decoding="async">
-            <img class="reel-still" src="assets/shots/bubbles.webp" srcset="assets/shots/bubbles.webp 620w, assets/shots/bubbles@2x.webp 1240w" sizes="340px" alt="The Bubbles view: circular clusters of app icons, one cluster per color, sized by how much each app is used." data-cap="Bubbles" data-sub="Each color a cluster. The apps you use most grow." loading="lazy" decoding="async">
+            <img class="reel-still on" data-clip="home" src="assets/shots/home.webp" srcset="assets/shots/home.webp 620w, assets/shots/home@2x.webp 1240w" sizes="340px" alt="The Hue-istic home screen: a wallpaper, one app icon, a dock and a search widget." data-cap="A home screen first" data-sub="Pages, folders, a dock, widgets. Swipe up for the drawer.">
+            <img class="reel-still" data-clip="rainbow" src="assets/shots/rainbow.webp" srcset="assets/shots/rainbow.webp 620w, assets/shots/rainbow@2x.webp 1240w" sizes="340px" alt="The Rainbow view: apps in a grid under a RED section header, the background shading from red to orange." data-cap="Rainbow" data-sub="One list, scrolling red through violet." loading="lazy" decoding="async">
+            <img class="reel-still" data-clip="mosaic" src="assets/shots/mosaic.webp" srcset="assets/shots/mosaic.webp 620w, assets/shots/mosaic@2x.webp 1240w" sizes="340px" alt="The Mosaic view: twelve colored tiles — red, orange, yellow, green, teal, blue, purple, pink, rainbow, white, gray, black — each packed with that color's app icons." data-cap="Mosaic" data-sub="One tile per color. Tap a tile for its apps." loading="lazy" decoding="async">
+            <img class="reel-still" data-clip="honeycomb" src="assets/shots/honeycomb.webp" srcset="assets/shots/honeycomb.webp 620w, assets/shots/honeycomb@2x.webp 1240w" sizes="340px" alt="The Honeycomb view: a dense hex spiral of app icons on colored cells." data-cap="Honeycomb" data-sub="A hex spiral, the apps you use most at its center." loading="lazy" decoding="async">
+            <img class="reel-still" data-clip="huering" src="assets/shots/huering.webp" srcset="assets/shots/huering.webp 620w, assets/shots/huering@2x.webp 1240w" sizes="340px" alt="The Hue Ring view: a segmented color wheel labelled Blue, 47 apps, with those apps listed beneath it." data-cap="Hue Ring" data-sub="Flick the wheel and it keeps going." loading="lazy" decoding="async">
+            <img class="reel-still" data-clip="bubbles" src="assets/shots/bubbles.webp" srcset="assets/shots/bubbles.webp 620w, assets/shots/bubbles@2x.webp 1240w" sizes="340px" alt="The Bubbles view: circular clusters of app icons, one cluster per color, sized by how much each app is used." data-cap="Bubbles" data-sub="Type, and the clusters melt away around the matches." loading="lazy" decoding="async">
           </div>
 
           <div class="reel-caption" id="reel-caption" aria-live="polite">
@@ -111,7 +108,13 @@
 
     <div class="cards">
       <article class="card" style="--c: var(--s1)">
-        <div class="card-shot"><img src="assets/shots/rainbow.webp" srcset="assets/shots/rainbow.webp 620w, assets/shots/rainbow@2x.webp 1240w" sizes="(max-width: 580px) 92vw, (max-width: 900px) 44vw, 340px" alt="The Rainbow view: apps in a grid beneath a RED section header." loading="lazy" decoding="async" width="620" height="1351"></div>
+        <div class="card-shot">
+          <video class="card-vid" poster="assets/shots/rainbow.webp" muted loop playsinline
+                 preload="none" aria-label="The Rainbow view: apps in a grid beneath a RED section header.">
+            <source src="assets/video/rainbow.webm" type="video/webm">
+            <source src="assets/video/rainbow.mp4" type="video/mp4">
+          </video>
+        </div>
         <div class="card-body">
           <h3>Rainbow</h3>
           <p>Every app in one list, red through violet. A toggle hides the section headers for
@@ -120,7 +123,13 @@
       </article>
 
       <article class="card" style="--c: var(--s4)">
-        <div class="card-shot"><img src="assets/shots/mosaic.webp" srcset="assets/shots/mosaic.webp 620w, assets/shots/mosaic@2x.webp 1240w" sizes="(max-width: 580px) 92vw, (max-width: 900px) 44vw, 340px" alt="The Mosaic view: twelve colored tiles, each packed with that color's app icons." loading="lazy" decoding="async" width="620" height="1351"></div>
+        <div class="card-shot">
+          <video class="card-vid" poster="assets/shots/mosaic.webp" muted loop playsinline
+                 preload="none" aria-label="The Mosaic view: twelve colored tiles, each packed with that color's app icons.">
+            <source src="assets/video/mosaic.webm" type="video/webm">
+            <source src="assets/video/mosaic.mp4" type="video/mp4">
+          </video>
+        </div>
         <div class="card-body">
           <h3>Mosaic</h3>
           <p>One tile per color, filled with that color's icons. Tap a tile for its apps.</p>
@@ -128,7 +137,13 @@
       </article>
 
       <article class="card" style="--c: var(--s5)">
-        <div class="card-shot"><img src="assets/shots/honeycomb.webp" srcset="assets/shots/honeycomb.webp 620w, assets/shots/honeycomb@2x.webp 1240w" sizes="(max-width: 580px) 92vw, (max-width: 900px) 44vw, 340px" alt="The Honeycomb view: a dense hex spiral of app icons on colored cells." loading="lazy" decoding="async" width="620" height="1351"></div>
+        <div class="card-shot">
+          <video class="card-vid" poster="assets/shots/honeycomb.webp" muted loop playsinline
+                 preload="none" aria-label="The Honeycomb view: a dense hex spiral of app icons on colored cells.">
+            <source src="assets/video/honeycomb.webm" type="video/webm">
+            <source src="assets/video/honeycomb.mp4" type="video/mp4">
+          </video>
+        </div>
         <div class="card-body">
           <h3>Honeycomb</h3>
           <p>A hex spiral, one cell per app, with the apps you use most at the center.</p>
@@ -155,14 +170,26 @@
 
     <div class="cards cards-2">
       <article class="card is-soon" style="--c: var(--orange)">
-        <div class="card-shot"><img src="assets/shots/huering.webp" srcset="assets/shots/huering.webp 620w, assets/shots/huering@2x.webp 1240w" sizes="(max-width: 580px) 92vw, 46vw" alt="The Hue Ring view: a segmented color wheel labelled Blue, 39 apps, with those apps listed beneath it." loading="lazy" decoding="async" width="620" height="1351"></div>
+        <div class="card-shot">
+          <video class="card-vid" poster="assets/shots/huering.webp" muted loop playsinline
+                 preload="none" aria-label="The Hue Ring view: a segmented color wheel labelled Blue, 39 apps, with those apps listed beneath it.">
+            <source src="assets/video/huering.webm" type="video/webm">
+            <source src="assets/video/huering.mp4" type="video/mp4">
+          </video>
+        </div>
         <div class="card-body"><span class="tag">Soon</span><h3>Hue Ring</h3>
           <p>A color wheel you can spin. Flick it and it keeps going, slowing to rest on a color
              and riffling its apps underneath as it passes.</p></div>
       </article>
 
       <article class="card is-soon" style="--c: var(--teal)">
-        <div class="card-shot"><img src="assets/shots/bubbles.webp" srcset="assets/shots/bubbles.webp 620w, assets/shots/bubbles@2x.webp 1240w" sizes="(max-width: 580px) 92vw, 46vw" alt="The Bubbles view: circular clusters of app icons, one cluster per color, each app sized by how much it is used." loading="lazy" decoding="async" width="620" height="1351"></div>
+        <div class="card-shot">
+          <video class="card-vid" poster="assets/shots/bubbles.webp" muted loop playsinline
+                 preload="none" aria-label="The Bubbles view: circular clusters of app icons, one cluster per color, each app sized by how much it is used.">
+            <source src="assets/video/bubbles.webm" type="video/webm">
+            <source src="assets/video/bubbles.mp4" type="video/mp4">
+          </video>
+        </div>
         <div class="card-body"><span class="tag">Soon</span><h3>Bubbles</h3>
           <p>Each color a cluster, the apps you use most drawn largest. Start typing and the
              clusters melt away around whatever still matches.</p></div>
