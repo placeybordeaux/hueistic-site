@@ -3,7 +3,10 @@
 The public site for **Hue-istic**, an Android home screen launcher that sorts your apps by
 icon color. Two pages: a landing page and the privacy policy.
 
-Live at <https://placeybordeaux.github.io/hueistic-site/>.
+Live at <https://hueistic.com/>. It is a GitHub Pages site with a custom domain: the `CNAME`
+file in the root is what tells Pages to serve it there, so do not delete it. The old address,
+<https://placeybordeaux.github.io/hueistic-site/>, still works — Pages answers it with a 301 to
+`hueistic.com` and keeps the path — which matters because of the section below.
 
 ## The one thing that must not move
 
@@ -18,8 +21,12 @@ Settings → About → **Privacy policy** in the app shows the policy text from 
 offers a "View online" button that opens exactly that address, and the same URL goes in Play
 Console under Policy → App content → Privacy policy. So:
 
-- **Do not rename this repository**, do not move `privacy.html`, and do not put the site under a
-  subdirectory. Any of those turns a shipped button into a 404.
+- **Do not rename this repository**, do not move `privacy.html`, do not put the site under a
+  subdirectory, and do not remove the custom domain or `CNAME`. The shipped build reaches the
+  policy through the github.io address, which only redirects to `hueistic.com/privacy` while the
+  repo keeps its name and Pages keeps the domain. Any of those turns a shipped button into a 404.
+- The canonical policy address is now <https://hueistic.com/privacy>. Move `PRIVACY_POLICY_URL`
+  and Play Console over to it in the next app release; until then the redirect carries the old one.
 - If the address ever has to change, change `Settings.PRIVACY_POLICY_URL` and Play Console in
   the same breath, and only in a release that goes out afterwards.
 
