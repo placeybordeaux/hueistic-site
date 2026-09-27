@@ -145,7 +145,7 @@ h3 { font-size: 19px; font-weight: 650; letter-spacing: -0.01em; }
 }
 @media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
 
-.hero h1 .hue {
+.hue {
   background: var(--rainbow); -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
