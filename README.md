@@ -138,16 +138,25 @@ are made, because none is obvious:
 
 ## Release state: the call to action
 
-The app is not on Google Play yet, so the site does not pretend it is. Two blocks in
-`index.html` are marked `##RELEASE-STATE##`; both currently say "coming soon" and offer an email.
-This mirrors `ComingSoon.ACTIVE` in the app, which shows a *coming soon* page rather than a
-purchase flow for the same reason.
+The site currently invites visitors into the closed beta. Both blocks in `index.html`
+marked `##RELEASE-STATE##` direct visitors to `#get`, which explains the required order:
+
+1. Join https://groups.google.com/g/hueistic-beta-testers.
+2. Opt in at https://play.google.com/apps/testing/com.hueistic.launcher.
+3. Install from https://play.google.com/store/apps/details?id=com.hueistic.launcher.
+
+Use the same Google account throughout. Before publishing these instructions, verify that
+`hueistic-beta-testers@googlegroups.com` is saved as the closed track's tester group,
+the group allows people to join, and the release is published for the intended countries
+and devices. Confirm the web opt-in URL against the Testers tab in Play Console and test
+the full flow with a non-owner account. Group membership alone is not test enrollment.
+The optional paid views remain described as coming soon.
 
 **On the day it goes live**, flip both. The hero's block becomes:
 
 ```html
 <p class="status"><span class="dot" aria-hidden="true"></span> Free on Google Play</p>
-<div class="cta-row" id="get">
+<div class="cta-row">
   <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.hueistic.launcher">
     Get it on Google Play
   </a>
@@ -156,7 +165,7 @@ purchase flow for the same reason.
 <p class="cta-note">Free. The six extra views are one optional purchase, yours for good.</p>
 ```
 
-and the closing block's primary button becomes the same Play link. At the same time:
+and the closing beta instructions become a call to action with the same Play link. At the same time:
 
 - `ComingSoon.ACTIVE` → `false` in the app, shipped as its own release;
 - the "On the way" section here loses its `Soon` tags and its "when it lands" hedges;
