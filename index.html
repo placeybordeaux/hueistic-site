@@ -30,7 +30,7 @@
   <nav class="bar-nav" aria-label="Sections">
     <a href="#views">Views</a>
     <a href="#privacy">Privacy</a>
-    <a href="#get" class="bar-cta">Get it</a>
+    <a href="#get" class="bar-cta">Join beta</a>
   </nav>
 </header>
 
@@ -44,23 +44,16 @@
       <p class="lede">
       Do you like the aesthetic of folders sorted by color?<br>
       Don't spend all the time doing it yourself!<br>
-      Download today and enjoy <span class="hue">nine</span> different views!
+      Join the beta and try a more <span class="hue">colorful</span> home screen!
       </p>
 
-      <!-- ##RELEASE-STATE##  While the app is not yet on Google Play, the whole call to action
-           is the one below. The day it goes live, replace this <p class="status"> and the
-           .cta-row that follows with the block marked ON-PLAY in README.md. Nothing else on the
-           page claims it can be installed today; that is deliberate, and it mirrors
-           ComingSoon.ACTIVE in the app itself. -->
-      <p class="status"><span class="dot" aria-hidden="true"></span> In review — coming soon to Google Play</p>
-      <div class="cta-row" id="get">
-        <a class="btn btn-primary"
-           href="mailto:placeybordeaux@gmail.com?subject=Tell%20me%20when%20Hue-istic%20launches&amp;body=Hi%20%E2%80%94%20please%20let%20me%20know%20when%20Hue-istic%20is%20on%20Google%20Play.">
-          Email me when it launches
-        </a>
-        <a class="btn btn-ghost" href="#views">See all nine views</a>
+      <!-- ##RELEASE-STATE## Closed beta: keep the group → opt-in → install flow until public launch. -->
+      <p class="status"><span class="dot" aria-hidden="true"></span> Closed beta on Google Play</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#get">Join the beta</a>
+        <a class="btn btn-ghost" href="#views">Explore the views</a>
       </div>
-      <p class="cta-note">One email, when it launches. Nothing else, ever.</p>
+      <p class="cta-note">Join the tester group, opt in on Google Play, then install.</p>
     </div>
 
     <!-- ============================================================ the reel -->
@@ -210,19 +203,32 @@
   </div>
 </section>
 
-<!-- ============================================================ closing CTA -->
-<section class="close-cta">
+<!-- ============================================================ closed testing -->
+<section class="close-cta" id="get" aria-labelledby="beta-title">
   <div class="wrap">
-    <p class="lede">In review at Google Play. Leave an address and you'll hear once, on the day.</p>
-    <!-- ##RELEASE-STATE##  Second of the two call-to-action blocks. See README.md. -->
-    <div class="cta-row">
-      <a class="btn btn-primary"
-         href="mailto:placeybordeaux@gmail.com?subject=Tell%20me%20when%20Hue-istic%20launches&amp;body=Hi%20%E2%80%94%20please%20let%20me%20know%20when%20Hue-istic%20is%20on%20Google%20Play.">
-        Email me when it launches
-      </a>
-      <a class="btn btn-ghost" href="privacy">Read the privacy policy</a>
-    </div>
-    <p class="cta-note">One email, when it launches. Nothing else.</p>
+    <p class="eyebrow">Closed beta</p>
+    <h2 id="beta-title">Try Hue-istic before launch</h2>
+    <p class="lede">Use the same Google account for the group, the testing page, and Google Play on your Android phone. Follow these steps in order.</p>
+    <!-- ##RELEASE-STATE## Replace the beta steps with the store link when public launch is ready. -->
+    <ol class="beta-steps">
+      <li>
+        <h3>Join the tester group</h3>
+        <p>Open Hue-istic Beta Testers and choose to join the group. You need to be a member before Google Play will let you join the test.</p>
+        <a class="btn btn-primary" href="https://groups.google.com/g/hueistic-beta-testers">Join the Google Group</a>
+      </li>
+      <li>
+        <h3>Become a tester on Google Play</h3>
+        <p>Open the testing page and select &ldquo;Become a tester&rdquo;. Joining the group alone does not opt you into the beta.</p>
+        <a class="btn btn-ghost" href="https://play.google.com/apps/testing/com.hueistic.launcher">Join the Google Play test</a>
+      </li>
+      <li>
+        <h3>Install and give it a try</h3>
+        <p>Open the store listing on your Android phone, install Hue-istic, and try it as your home screen launcher.</p>
+        <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.hueistic.launcher">Install from Google Play</a>
+      </li>
+    </ol>
+    <p class="beta-help">Can&rsquo;t access the test? Check that all three steps use the same Google account. If you just joined or the test was just published, allow time for Google Play to update and try again. If you&rsquo;re already in the internal test, leave it before joining this closed beta.</p>
+    <p class="beta-help">Found a bug or have feedback? <a href="mailto:placeybordeaux@gmail.com?subject=Hue-istic%20beta%20feedback">Email the developer</a> with your phone model and what happened.</p>
   </div>
 </section>
 

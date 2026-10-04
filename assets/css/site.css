@@ -331,3 +331,13 @@ h3 { font-size: 19px; font-weight: 650; letter-spacing: -0.01em; }
 .doc ul { padding-left: 20px; }
 .doc li { color: var(--dim); margin-bottom: 12px; }
 .doc a { color: var(--text); text-decoration-color: var(--dimmer); text-underline-offset: 3px; }
+
+/* ---------------------------------------------------------------- closed beta */
+#get { scroll-margin-top: 80px; }
+.beta-steps { max-width: 720px; padding-left: 28px; text-align: left; }
+.beta-steps li { padding: 12px 0 24px 12px; }
+.beta-steps li::marker { color: var(--s3); font-weight: 700; }
+.beta-steps h3 { margin-bottom: 8px; }
+.beta-steps p, .beta-help { color: var(--dim); }
+.beta-steps p { margin: 0 0 16px; }
+.beta-help { max-width: 70ch; font-size: 15px; text-align: left; }
